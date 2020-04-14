@@ -3,6 +3,11 @@ h1 {
     margin: 0px;
 }
 
+h2 {
+    font-size: 12pt;
+    margin: 0px;
+}
+
 .Container {
     background-color: #eee;
     padding: 5px;
@@ -10,6 +15,11 @@ h1 {
 
 .Ship {
     background-color: #ddd;
+}
+
+.ShipDetails {
+    background-color: #ccc;
+    padding: 5px;
 }
 
 .RequestError {

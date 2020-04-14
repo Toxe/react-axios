@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export default function Ship({ship}) {
+export default function Ship({ ship, changeShipDetailsID }) {
     return (
         <div className="Ship">
-            <button>#{ship.id}</button> ({ship.ship_class}) {ship.model}
+            <button onClick={changeShipDetailsID}>#{ship.id}</button> ({ship.ship_class}) {ship.model}
         </div>
-    )
+    );
 }
