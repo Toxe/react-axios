@@ -19,7 +19,7 @@ export default function ShipDetails(props) {
             axios
                 .get(`http://localhost:3001/ships/${shipDetailsID}`)
                 .then((res) => setShip(res.data))
-                .catch((error) => setRequestError(error));
+                .catch((error) => setRequestError(<RequestError error={error} />));
         }
     }, [shipDetailsID]);
 
@@ -36,7 +36,7 @@ export default function ShipDetails(props) {
                 />
             </div>
             {ship && <pre>{JSON.stringify(ship, null, "  ")}</pre>}
-            {requestError && <RequestError error={requestError} />}
+            {requestError}
         </div>
     );
 }

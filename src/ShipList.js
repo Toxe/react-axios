@@ -13,7 +13,7 @@ export default function ShipList() {
         axios
             .get("http://localhost:3001/ships")
             .then((res) => setShips(res.data))
-            .catch((error) => setRequestError(error));
+            .catch((error) => setRequestError(<RequestError error={error} />));
     }, []);
 
     return (
@@ -22,8 +22,7 @@ export default function ShipList() {
             {ships.map((ship) => (
                 <Ship key={ship.id} ship={ship} changeShipDetailsID={() => setShipDetailsID(ship.id)} />
             ))}
-            {requestError && <RequestError error={requestError} />}
-            <ShipDetails shipDetailsID={shipDetailsID} />
+            {requestError || <ShipDetails shipDetailsID={shipDetailsID} />}
         </div>
     );
 }
