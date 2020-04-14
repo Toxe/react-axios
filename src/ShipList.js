@@ -1,52 +1,26 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Ship from "./Ship";
+import RequestError from "./RequestError";
 
 export default function ShipList() {
     const [ships, setShips] = useState([]);
+    const [requestError, setRequestError] = useState(null);
 
     useEffect(() => {
-        setShips([
-            {
-                id: 1,
-                affiliation: "Rebel Alliance",
-                category: "Starfighters",
-                crew: 1,
-                length: 13,
-                manufacturer: "Incom Corporation",
-                model: "T-65 X-Wing",
-                roles: ["Space Superiority Starfighter", "Escort"],
-                ship_class: "Starfighter",
-            },
-            {
-                id: 2,
-                affiliation: "Empire",
-                category: "Starfighters",
-                crew: 1,
-                length: 7,
-                manufacturer: "Sienar Fleet Systems",
-                model: "TIE/LN Starfighter",
-                roles: ["Space Superiority Starfighter"],
-                ship_class: "Starfighter",
-            },
-            {
-                id: 3,
-                affiliation: "Empire",
-                category: "Starfighters",
-                crew: 1,
-                length: 8,
-                manufacturer: "Sienar Fleet Systems",
-                model: "TIE/SA Bomber",
-                roles: ["Bomber"],
-                ship_class: "Space/Planetary Bomber",
-            },
-        ]);
+        axios
+            .get("http://localhost:3001/ships")
+            .then((res) => setShips(res.data))
+            .catch((error) => setRequestError(error));
     }, []);
 
     return (
         <div className="Container">
+            <h1>Ship List</h1>
             {ships.map((ship) => (
                 <Ship key={ship.id} ship={ship} />
             ))}
+            {requestError && <RequestError error={requestError} />}
         </div>
     );
 }

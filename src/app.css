@@ -1,3 +1,8 @@
+h1 {
+    font-size: 14pt;
+    margin: 0px;
+}
+
 .Container {
     background-color: #eee;
     padding: 5px;
@@ -5,4 +10,10 @@
 
 .Ship {
     background-color: #ddd;
+}
+
+.RequestError {
+    color: white;
+    background-color: red;
+    padding: 5px;
 }
